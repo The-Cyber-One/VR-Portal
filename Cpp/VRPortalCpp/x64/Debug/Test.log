@@ -1,0 +1,8 @@
+﻿  pch.cpp
+  dllmain.cpp
+  Test.cpp
+C:\Users\joshu\Desktop\GameDev\Unity\VR Portal\Cpp\VRPortalCpp\Test.cpp(4,5): warning C4273: 'Add': inconsistent dll linkage
+C:\Users\joshu\Desktop\GameDev\Unity\VR Portal\Cpp\VRPortalCpp\Test.h(9,25): message : see previous definition of 'Add'
+  Generating Code...
+     Creating library C:\Users\joshu\Desktop\GameDev\Unity\VR Portal\Cpp\VRPortalCpp\x64\Debug\VRPortalCpp.lib and object C:\Users\joshu\Desktop\GameDev\Unity\VR Portal\Cpp\VRPortalCpp\x64\Debug\VRPortalCpp.exp
+  Test.vcxproj -> C:\Users\joshu\Desktop\GameDev\Unity\VR Portal\Cpp\VRPortalCpp\x64\Debug\VRPortalCpp.dll
