@@ -364,10 +364,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 712838583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8151608892e595f41bdbc8404c63b70f, type: 3}
+  m_Script: {fileID: 11500000, guid: c44984c9b8353ce4d8bec18e9756e7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  libraryName: PortalCam.dll
 --- !u!1 &729263727
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,24 +2,21 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class CppGlue : MonoBehaviour
+public abstract class CppGlue : MonoBehaviour
 {
 #if UNITY_EDITOR
     // Handle to the C++ DLL
-    public IntPtr libraryHandle;
-
-    // The Init delegate that will make the C# functions accessible in C++
-    public delegate void InitDelegate(
-        IntPtr gameObjectGetTransformPointer,
-        IntPtr logPointer);
+    protected IntPtr libraryHandle;
 
     // C# functions that will call C++ functions
-    public delegate void MonoBehaviourStartDelegate();
-    public MonoBehaviourStartDelegate MonoBehaviourStart;
+    protected delegate void MonoBehaviourStartDelegate();
+    protected MonoBehaviourStartDelegate MonoBehaviourStart;
 
-    public delegate void MonoBehaviourUpdateDelegate();
-    public MonoBehaviourUpdateDelegate MonoBehaviourUpdate;
-#endif
+    protected delegate void MonoBehaviourUpdateDelegate();
+    protected MonoBehaviourUpdateDelegate MonoBehaviourUpdate;
+
+    protected delegate void MonoBehaviourFixedUpdateDelegate();
+    protected MonoBehaviourFixedUpdateDelegate MonoBehaviourFixedUpdate;
 
     #region Library managing
     // This region won't need any more editing
@@ -46,7 +43,7 @@ public class CppGlue : MonoBehaviour
         FreeLibrary(libraryHandle);
     }
 
-    public static T GetDelegate<T>(IntPtr libraryHandle, string functionName) where T : class
+    protected static T GetDelegate<T>(IntPtr libraryHandle, string functionName) where T : class
     {
         IntPtr symbol = GetProcAddress(libraryHandle, functionName);
         if (symbol == IntPtr.Zero)
@@ -54,63 +51,40 @@ public class CppGlue : MonoBehaviour
 
         return Marshal.GetDelegateForFunctionPointer(symbol, typeof(T)) as T;
     }
-
-    [SerializeField] string libraryName;
-    string LibraryPath => "/Scripts/Cpp/VRPortal/x64/Release/" + libraryName;
     #endregion
+#endif
 
-    // C# delegates
-    delegate int GameObjectGetTransformDelegate(int thisHandle);
-    delegate void LogDelegate(string message);
+    // LibraryName will be must be set by the parent. If this isn't done it will only cause errors in the editor
+    protected static string LibraryName;
+    string LibraryPath => $"/Scripts/Cpp/VRPortal/x64/Release/{LibraryName}.dll";
 
-    void Awake()
+    // C# log delegate
+    protected delegate void LogDelegate(string message);
+
+    protected virtual void Awake()
     {
 #if UNITY_EDITOR
 
         // Open native library
         libraryHandle = OpenLibrary(Application.dataPath + LibraryPath);
-        InitDelegate Init = GetDelegate<InitDelegate>(libraryHandle, "Init");
         MonoBehaviourStart = GetDelegate<MonoBehaviourStartDelegate>(libraryHandle, "Start");
         MonoBehaviourUpdate = GetDelegate<MonoBehaviourUpdateDelegate>(libraryHandle, "Update");
-
+        MonoBehaviourFixedUpdate = GetDelegate<MonoBehaviourFixedUpdateDelegate>(libraryHandle, "FixedUpdate");
 #endif
 
         // Init C++ library
         ObjectStore.Init(1024);
-        Init(
-            Marshal.GetFunctionPointerForDelegate(new GameObjectGetTransformDelegate(GameObjectGetTransform)),
-            Marshal.GetFunctionPointerForDelegate(new LogDelegate(Log)));
     }
 
-    void Start()
-    {
-        MonoBehaviourStart();
-    }
-
-    void Update()
-    {
-        MonoBehaviourUpdate();
-    }
-
+#if UNITY_EDITOR
     void OnApplicationQuit()
     {
-#if UNITY_EDITOR
         CloseLibrary(libraryHandle);
         libraryHandle = IntPtr.Zero;
+    }
 #endif
-    }
 
-    ////////////////////////////////////////////////////////////////
-    // C# functions for C++ to call
-    ////////////////////////////////////////////////////////////////
-    static int GameObjectGetTransform(int thisHandle)
-    {
-        GameObject gameobject = (GameObject)ObjectStore.Get(thisHandle);
-        Transform transform = gameobject.transform;
-        return ObjectStore.Store(transform);
-    }
-
-    static void Log(string message)
+    protected static void Log(string message)
     {
         Debug.Log(message);
     }
