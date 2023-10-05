@@ -11,6 +11,7 @@ Shader "Custom/Portal"
         {
             "RenderType"="Opaque"
         }
+        Cull Off
         LOD 100
 
         Pass
@@ -45,8 +46,13 @@ Shader "Custom/Portal"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // sample the texture
-                const float2 uv = i.screenPos.xy / i.screenPos.w;
+                float2 uv = i.screenPos.xy / i.screenPos.w;
+                // uv.x *= 0.5;
+                // uv.x -= 0.5;
+                
+                // if ((uv.x > 0.7 && uv.y > 0.7) || (uv.x < 0.2 && uv.y < 0.2))
+                //     return 0;
+                // return fixed4(uv, 0, 1);
                 fixed4 col = tex2D(_LeftTex, uv) * ((unity_StereoEyeIndex + 1) % 2) + tex2D(_RightTex, uv) *
                     unity_StereoEyeIndex;
                 return col;
