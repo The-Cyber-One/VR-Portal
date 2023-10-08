@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.XR;
 
 public class Portal : MonoBehaviour
@@ -13,18 +15,20 @@ public class Portal : MonoBehaviour
     InputDevice _hmd;
     Camera _portalCamLeft, _portalCamRight;
     RenderTexture _portalTextureLeft, _portalTextureRight;
-    [SerializeField] List<PortalTraveller> _travellers = new();
+    List<PortalTraveller> _travellers = new();
 
     public int Layer => meshRenderer.gameObject.layer;
 
     private void OnEnable()
     {
-        InputDevices.deviceConnected += DeviceConnected;
+        InputDevices.deviceConnected += OnDeviceConnected;
+        RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
     }
 
     private void OnDisable()
     {
-        InputDevices.deviceConnected -= DeviceConnected;
+        InputDevices.deviceConnected -= OnDeviceConnected;
+        RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
     }
 
     private void FixedUpdate()
@@ -66,7 +70,7 @@ public class Portal : MonoBehaviour
         }
     }
 
-    private void DeviceConnected(InputDevice obj)
+    private void OnDeviceConnected(InputDevice obj)
     {
         if (obj.characteristics.HasFlag(InputDeviceCharacteristics.HeadMounted))
         {
@@ -75,11 +79,15 @@ public class Portal : MonoBehaviour
         }
     }
 
+    private void OnBeginCameraRendering(ScriptableRenderContext src, Camera cam) => Render(src);
+
     private IEnumerator C_CreatePortalCam()
     {
-        yield return null; // Wait a frame so that the player cam will initialize first
+        // TODO Fix waiting
+        //yield return new WaitUntil(() => _hmd.isValid); // Wait for the player cam to initialize first
         _portalCamLeft = CreatePortalCam();
         _portalCamRight = CreatePortalCam();
+        yield return null;
     }
 
     private Camera CreatePortalCam()
@@ -102,7 +110,7 @@ public class Portal : MonoBehaviour
     }
 
     // Called before player cam renders
-    public void Render()
+    public void Render(ScriptableRenderContext src = default)
     {
         if (_portalCamLeft == null || _portalCamRight == null)
             return;
@@ -125,8 +133,17 @@ public class Portal : MonoBehaviour
         var portalMatrixRight = otherPortal.transform.localToWorldMatrix * transform.worldToLocalMatrix * rightEye.localToWorldMatrix;
         _portalCamRight.transform.SetPositionAndRotation(portalMatrixRight.GetPosition(), portalMatrixRight.rotation);
 
-        _portalCamLeft.Render();
-        _portalCamRight.Render();
+        _portalCamLeft.projectionMatrix = ObliqueProjection(_portalCamLeft);
+        _portalCamRight.projectionMatrix = ObliqueProjection(_portalCamRight);
+
+        if (_portalTextureLeft == null || _portalTextureRight == null)
+            return;
+
+#pragma warning disable CS0618 // New sugested version doesn't allow for beinging called from the beginCameraRendering
+        //RenderPipeline.SubmitRenderRequest(_portalCam, new UniversalRenderPipeline.SingleCameraRequest());
+        UniversalRenderPipeline.RenderSingleCamera(src, _portalCamLeft);
+        UniversalRenderPipeline.RenderSingleCamera(src, _portalCamRight);
+#pragma warning restore CS0618 // Type or member is obsolete                            
     }
 
     private void CreateCamTextures()
@@ -159,6 +176,20 @@ public class Portal : MonoBehaviour
         meshRenderer.material.SetTexture("_RightTex", _portalTextureRight);
     }
 
+    private Matrix4x4 ObliqueProjection(Camera cam)
+    {
+        Transform clipPlane = otherPortal.meshRenderer.transform;
+        Vector3 clipPosition = clipPlane.position; // TODO: try displacing position to the portal screen mesh edge
+        int dot = System.Math.Sign(Vector3.Dot(clipPlane.forward, clipPosition - cam.transform.position));
+
+        Vector3 camSpacePos = cam.worldToCameraMatrix.MultiplyPoint(clipPosition);
+        Vector3 camSpaceNormal = cam.worldToCameraMatrix.MultiplyVector(clipPlane.forward) * dot;
+        float camSpaceDistance = -Vector3.Dot(camSpacePos, camSpaceNormal);
+        Vector4 clipPlaneCamSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDistance);
+
+        return cam.CalculateObliqueMatrix(clipPlaneCamSpace);
+    }
+
     public void TravellerEnterdPortal(PortalTraveller traveller)
     {
         if (_travellers.Contains(traveller))
@@ -174,15 +205,15 @@ public class Portal : MonoBehaviour
         _travellers.Remove(traveller);
     }
 
-    private void ProtectScreenFromClipping()
+    public void ProtectScreenFromClipping()
     {
         Transform closestEye = (leftEye.position - transform.position).sqrMagnitude > (rightEye.position - transform.position).sqrMagnitude
             ? rightEye
             : leftEye;
 
-        Transform portalMesh = meshRenderer.transform;
         bool camFacingSameDirAsPortal = Vector3.Dot(transform.forward, transform.position - closestEye.position) > 0;
-        portalMesh.localPosition = (camFacingSameDirAsPortal ? 0.5f : -0.5f) * portalMesh.localScale.z * Vector3.forward;
+        Transform portalMesh = meshRenderer.transform;
+        portalMesh.localPosition = (camFacingSameDirAsPortal ? 0.6f : -0.6f) * portalMesh.localScale.z * Vector3.forward;
     }
 
     private static bool VisibleFromCamera(Renderer renderer, Camera camera)

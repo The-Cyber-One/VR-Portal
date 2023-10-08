@@ -25,5 +25,7 @@ public class EyePortalTraveller : PortalTraveller
             base.Teleport(inPortal, outPortal);
             _teleported = true;
         }
+
+        outPortal.ProtectScreenFromClipping();
     }
 }
