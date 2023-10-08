@@ -125,6 +125,9 @@ public class Portal : MonoBehaviour
         var portalMatrixRight = otherPortal.transform.localToWorldMatrix * transform.worldToLocalMatrix * rightEye.localToWorldMatrix;
         _portalCamRight.transform.SetPositionAndRotation(portalMatrixRight.GetPosition(), portalMatrixRight.rotation);
 
+        //_portalCamLeft.projectionMatrix = ObliqueProjection(_portalCamLeft);
+        //_portalCamRight.projectionMatrix = ObliqueProjection(_portalCamRight);
+
         _portalCamLeft.Render();
         _portalCamRight.Render();
     }
@@ -134,8 +137,8 @@ public class Portal : MonoBehaviour
         if (!_hmd.isValid || XRSettings.eyeTextureWidth == 0 || XRSettings.eyeTextureHeight == 0)
             return;
 
-        //int width = 1832, height = 1840; // Quest resolution
         int eyeWidth = XRSettings.eyeTextureWidth, eyeHeight = XRSettings.eyeTextureHeight;
+
         // Don't create new texture if it already is correct
         if (_portalTextureLeft != null && _portalTextureLeft.width == eyeWidth && _portalTextureLeft.height == eyeHeight
             && _portalTextureLeft != null && _portalTextureRight.width == eyeWidth && _portalTextureRight.height == eyeHeight)
@@ -157,6 +160,20 @@ public class Portal : MonoBehaviour
         _portalCamRight.targetTexture = _portalTextureRight;
         meshRenderer.material.SetTexture("_LeftTex", _portalTextureLeft);
         meshRenderer.material.SetTexture("_RightTex", _portalTextureRight);
+    }
+
+    private Matrix4x4 ObliqueProjection(Camera cam)
+    {
+        Transform clipPlane = otherPortal.meshRenderer.transform;
+        Vector3 clipPosition = clipPlane.position; // TODO: try displacing position to the portal screen mesh edge
+        int dot = System.Math.Sign(Vector3.Dot(clipPlane.forward, clipPosition - cam.transform.position));
+
+        Vector3 camSpacePos = cam.worldToCameraMatrix.MultiplyPoint(clipPosition);
+        Vector3 camSpaceNormal = cam.worldToCameraMatrix.MultiplyVector(clipPlane.forward) * dot;
+        float camSpaceDistance = -Vector3.Dot(camSpacePos, camSpaceNormal);
+        Vector4 clipPlaneCamSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDistance);
+
+        return cam.CalculateObliqueMatrix(clipPlaneCamSpace);
     }
 
     public void TravellerEnterdPortal(PortalTraveller traveller)
@@ -182,7 +199,7 @@ public class Portal : MonoBehaviour
 
         Transform portalMesh = meshRenderer.transform;
         bool camFacingSameDirAsPortal = Vector3.Dot(transform.forward, transform.position - closestEye.position) > 0;
-        portalMesh.localPosition = (camFacingSameDirAsPortal ? 0.5f : -0.5f) * portalMesh.localScale.z * Vector3.forward;
+        portalMesh.localPosition = (camFacingSameDirAsPortal ? 0.6f : -0.6f) * portalMesh.localScale.z * Vector3.forward;
     }
 
     private static bool VisibleFromCamera(Renderer renderer, Camera camera)
