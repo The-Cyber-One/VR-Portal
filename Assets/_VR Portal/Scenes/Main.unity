@@ -297,6 +297,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6416253584459641999, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cbdd3cef7d423f64d8037b7138942ec4, type: 2}
     - target: {fileID: 7729763760943984988, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
       propertyPath: m_Name
       value: Portal Orange

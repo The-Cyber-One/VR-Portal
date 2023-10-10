@@ -70,6 +70,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BorderSize: 0.1
+    - _BorderSmoothing: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -84,7 +85,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SquareBorder: 0.01
-    - _SquareSize: 0.1
+    - _SquareSize: 0.25
+    - _SquareSpeed: 25
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

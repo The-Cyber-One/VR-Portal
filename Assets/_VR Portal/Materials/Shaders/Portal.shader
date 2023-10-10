@@ -2,8 +2,6 @@ Shader "Custom/Portal"
 {
     Properties
     {
-        _LeftTex("Left eye", 2D) = "white" {}
-        _RightTex("Right eye", 2D) = "white" {}
         _Color ("Color", Color) = (1, 1, 1, 1)
 
         [Header(Border)]
@@ -14,7 +12,7 @@ Shader "Custom/Portal"
         [Header(Squares)]
         [Space]
         _SquareSize ("Square size", Float) = 0.1
-        _SquareBorder ("Square border size", Range(0, 1)) = 0.1
+        _SquareBorder ("Square border size", Range(0, 1)) = 0.01
         _SquareSpeed ("Square speed", Float) = 1
     }
     SubShader
