@@ -297,10 +297,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6416253584459641999, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: cbdd3cef7d423f64d8037b7138942ec4, type: 2}
     - target: {fileID: 7729763760943984988, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
       propertyPath: m_Name
       value: Portal Orange
@@ -328,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 9159092625244350105, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
       propertyPath: playerCam
       value: 
-      objectReference: {fileID: 1887101349}
+      objectReference: {fileID: 1123961591}
     - target: {fileID: 9159092625244350105, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
       propertyPath: otherPortal
       value: 
@@ -508,7 +504,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd0c2da53861bcc42b91b95696e8f4a2, type: 2}
+  - {fileID: 2100000, guid: 1415dc4265e341045b9c5e79eef5311f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -675,111 +671,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1197720425
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1197720429}
-  - component: {fileID: 1197720428}
-  - component: {fileID: 1197720427}
-  - component: {fileID: 1197720426}
-  m_Layer: 0
-  m_Name: Cube (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1197720426
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197720425}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1197720427
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197720425}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 22eb781039f452843b49b8f92618dc87, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1197720428
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197720425}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1197720429
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197720425}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.01, z: -2.361}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1469870218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3496102148635257685, guid: 7bf8d7cd287124e4ba875872cac3a374, type: 3}
@@ -847,11 +738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f858cccc42fbb8b4eb6d231f8dbb526e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &1887101349 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2151501857002123485, guid: 7bf8d7cd287124e4ba875872cac3a374, type: 3}
-  m_PrefabInstance: {fileID: 8311307011636823641}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1887145632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +935,7 @@ PrefabInstance:
     - target: {fileID: 9159092625244350105, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
       propertyPath: playerCam
       value: 
-      objectReference: {fileID: 1887101349}
+      objectReference: {fileID: 1123961591}
     - target: {fileID: 9159092625244350105, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
       propertyPath: otherPortal
       value: 
@@ -1087,10 +973,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin (XR Rig)
       objectReference: {fileID: 0}
-    - target: {fileID: 1292390132944419359, guid: 7bf8d7cd287124e4ba875872cac3a374, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1730972616319401452, guid: 7bf8d7cd287124e4ba875872cac3a374, type: 3}
       propertyPath: portals.Array.size
       value: 2
@@ -1115,10 +997,6 @@ PrefabInstance:
       propertyPath: portals.Array.data[1]
       value: 
       objectReference: {fileID: 1585628649}
-    - target: {fileID: 3183362563438538335, guid: 7bf8d7cd287124e4ba875872cac3a374, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3758224504163184159, guid: 7bf8d7cd287124e4ba875872cac3a374, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1194,4 +1072,3 @@ SceneRoots:
   - {fileID: 860153431}
   - {fileID: 244013}
   - {fileID: 1481834998}
-  - {fileID: 1197720429}

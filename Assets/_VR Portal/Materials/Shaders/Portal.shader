@@ -71,7 +71,7 @@ Shader "Custom/Portal"
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.objectPosition = v.vertex;
-                o.screenPos = ComputeScreenPos(v.vertex);
+                o.screenPos = ComputeScreenPos(o.vertex);
                 return o;
             }
 
@@ -82,9 +82,8 @@ Shader "Custom/Portal"
                 // return lerp(float4(1, 0, 0, 1), float4(0, 1, 0, 1), unity_StereoEyeIndex);
                 // Portal cams
                 float2 uv = i.screenPos.xy / i.screenPos.w;
-                // uv.y = 1 - uv.y;
                 const fixed3 portalScreen = lerp(tex2D(_LeftTex, uv), tex2D(_RightTex, uv), unity_StereoEyeIndex);
-                return fixed4(portalScreen, 1);
+                // return fixed4(portalScreen, 1);
 
                 // Border
                 const float3 scale = float3(
