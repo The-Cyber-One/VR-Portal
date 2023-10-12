@@ -13,7 +13,7 @@ public class Portal : MonoBehaviour
     InputDevice _hmd;
     Camera _portalCamLeft, _portalCamRight;
     RenderTexture _portalTextureLeft, _portalTextureRight;
-    [SerializeField] List<PortalTraveller> _travellers = new();
+    List<PortalTraveller> _travellers = new();
 
     public int Layer => meshRenderer.gameObject.layer;
 

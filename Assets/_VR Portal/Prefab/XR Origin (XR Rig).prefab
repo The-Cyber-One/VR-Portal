@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2481807352443973413}
   - component: {fileID: 6739325344341707966}
   - component: {fileID: 2065217961835773308}
+  - component: {fileID: 5596458535274298661}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -163,6 +164,62 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &5596458535274298661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72781326901819665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe215503df67c545b9e559493886030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 3682074754455083242}
+  rightHand: {fileID: 7806677072081266234}
+  inputActionLeft:
+    m_Name: Input Action Left
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9b1ec509-23dc-4efb-af1e-460d8d3bdcce
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e2313710-4b5e-4093-87f6-622393e7a3e8
+      m_Path: <XRController>{LeftHand}/{PrimaryButton}
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action Left
+      m_Flags: 0
+    m_Flags: 0
+  inputActionRight:
+    m_Name: Input Action Right
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b4ef2d8e-be92-4d4c-9582-bfd43f23d19c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 763dd9b4-fe41-4139-8400-a72950d8a6bb
+      m_Path: <XRController>{RightHand}/{PrimaryButton}
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action Right
+      m_Flags: 0
+    m_Flags: 0
+  portalLeft: {fileID: 0}
+  portalRight: {fileID: 0}
+  wallDistance: 0.1
+  castRadius: 0.1
+  maxDistance: 100
+  nonPortalLayer:
+    serializedVersion: 2
+    m_Bits: 247
 --- !u!1 &1292390132944419359
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,8 +904,8 @@ Camera:
   m_GameObject: {fileID: 5199973523038842769}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
