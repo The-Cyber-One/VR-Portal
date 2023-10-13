@@ -194,6 +194,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Input Action Left
       m_Flags: 0
+    - m_Name: 
+      m_Id: 8326db02-2341-4ac2-a0ed-f4bd18ce0970
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action Left
+      m_Flags: 0
     m_Flags: 0
   inputActionRight:
     m_Name: Input Action Right
@@ -206,6 +214,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: 763dd9b4-fe41-4139-8400-a72950d8a6bb
       m_Path: <XRController>{RightHand}/{PrimaryButton}
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action Right
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9c6258f6-074c-40c3-8216-7c29ae2c9f4d
+      m_Path: <Keyboard>/e
       m_Interactions: 
       m_Processors: 
       m_Groups: 

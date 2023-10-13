@@ -28,24 +28,17 @@ public class Shooting : MonoBehaviour
         inputActionRight.Disable();
     }
 
-    private void OnLeftButtonPressed(InputAction.CallbackContext obj) => ShootPortal(leftHand, portalLeft);
-    private void OnRightButtonPressed(InputAction.CallbackContext obj) => ShootPortal(rightHand, portalRight);
+    private void OnLeftButtonPressed(InputAction.CallbackContext obj) => ShootPortal(leftHand, portalLeft, false);
+    private void OnRightButtonPressed(InputAction.CallbackContext obj) => ShootPortal(rightHand, portalRight, true);
 
-    private void ShootPortal(Transform pointer, Portal portal)
+    private void ShootPortal(Transform pointer, Portal portal, bool inverseRotation)
     {
         if (Physics.SphereCast(pointer.position, castRadius, pointer.forward, out RaycastHit hit, maxDistance, nonPortalLayer))
         {
             Debug.Log("hit at: " + hit.point);
-            Debug.DrawRay(hit.point, hit.normal, Color.cyan, 1f);
-            _previousHit = hit.point;
-            portal.transform.position = hit.point + hit.normal * wallDistance;
+            Vector3 portalPosition = hit.point + hit.normal * wallDistance;
+            Quaternion portalRotation = Quaternion.LookRotation(inverseRotation ? -hit.normal : hit.normal);
+            portal.transform.SetPositionAndRotation(portalPosition, portalRotation);
         }
-    }
-
-    Vector3 _previousHit;
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(_previousHit, 0.1f);
     }
 }
