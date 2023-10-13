@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] float wallDistance = 0.05f;
 
     [Header("Physic cast")]
-    [SerializeField] float castRadius = 0.1f, maxDistance = 100;
+    [SerializeField] float maxDistance = 100;
     [SerializeField] LayerMask nonPortalLayer;
 
     private void OnEnable()
@@ -33,9 +33,8 @@ public class Shooting : MonoBehaviour
 
     private void ShootPortal(Transform pointer, Portal portal, bool inverseRotation)
     {
-        if (Physics.SphereCast(pointer.position, castRadius, pointer.forward, out RaycastHit hit, maxDistance, nonPortalLayer))
+        if (Physics.Raycast(pointer.position, pointer.forward, out RaycastHit hit, maxDistance, nonPortalLayer))
         {
-            Debug.Log("hit at: " + hit.point);
             Vector3 portalPosition = hit.point + hit.normal * wallDistance;
             Quaternion portalRotation = Quaternion.LookRotation(inverseRotation ? -hit.normal : hit.normal);
             portal.transform.SetPositionAndRotation(portalPosition, portalRotation);

@@ -77,7 +77,7 @@ public class Portal : MonoBehaviour
 
     private IEnumerator C_CreatePortalCam()
     {
-        yield return null; // Wait a frame so that the player cam will initialize first
+        yield return new WaitUntil(() => _hmd.subsystem.running); // Wait a frame so that the player cam will initialize first
         _portalCamLeft = CreatePortalCam();
         _portalCamRight = CreatePortalCam();
     }
