@@ -815,13 +815,13 @@ MonoBehaviour:
   leftHand:
     VRTarget: {fileID: 0}
     RigTarget: {fileID: 7846386139789707979}
-    TrackingPositionOffset: {x: 0, y: 0, z: 0}
+    TrackingPositionOffset: {x: 0, y: -0.03, z: -0.15}
     TrackingRotationOffset: {x: -90, y: 180, z: 0}
   rightHand:
     VRTarget: {fileID: 0}
     RigTarget: {fileID: 5945869780117573166}
-    TrackingPositionOffset: {x: 0, y: 0, z: 0}
-    TrackingRotationOffset: {x: -90, y: 180, z: 0}
+    TrackingPositionOffset: {x: 0, y: -0.03, z: -0.15}
+    TrackingRotationOffset: {x: 90, y: 0, z: 0}
   headConstraint: {fileID: 1393427198533394638}
 --- !u!4 &7103297463296757133 stripped
 Transform:

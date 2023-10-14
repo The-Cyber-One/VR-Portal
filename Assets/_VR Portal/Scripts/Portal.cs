@@ -9,11 +9,13 @@ public class Portal : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] Transform leftEye, rightEye, center;
     [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] bool isLeftPortal;
 
     InputDevice _hmd;
     Camera _portalCamLeft, _portalCamRight;
     RenderTexture _portalTextureLeft, _portalTextureRight;
     List<PortalTraveller> _travellers = new();
+    Collider _wallCollider;
 
     public int Layer => meshRenderer.gameObject.layer;
 
@@ -25,6 +27,18 @@ public class Portal : MonoBehaviour
     private void OnDisable()
     {
         InputDevices.deviceConnected -= DeviceConnected;
+    }
+
+    private void Start()
+    {
+        Collider[] wall = new Collider[1];
+        Physics.OverlapSphereNonAlloc(transform.position, 0.1f, wall, ~LayerMask.GetMask(LayerMask.LayerToName(gameObject.layer)));
+        _wallCollider = wall[0];
+
+        if (_wallCollider == null)
+        {
+            Debug.LogWarning("Portal didn't find starter wall");
+        }
     }
 
     private void FixedUpdate()
@@ -55,6 +69,7 @@ public class Portal : MonoBehaviour
         if (other.TryGetComponent(out PortalTraveller traveller))
         {
             TravellerEnterdPortal(traveller);
+            Physics.IgnoreCollision(other, _wallCollider, true);
         }
     }
 
@@ -63,6 +78,7 @@ public class Portal : MonoBehaviour
         if (other.TryGetComponent(out PortalTraveller traveller))
         {
             _travellers.Remove(traveller);
+            Physics.IgnoreCollision(other, _wallCollider, false);
         }
     }
 
@@ -77,7 +93,8 @@ public class Portal : MonoBehaviour
 
     private IEnumerator C_CreatePortalCam()
     {
-        yield return new WaitUntil(() => _hmd.subsystem.running); // Wait a frame so that the player cam will initialize first
+        float fov = playerCam.fieldOfView;
+        yield return new WaitUntil(() => fov != playerCam.fieldOfView);
         _portalCamLeft = CreatePortalCam();
         _portalCamRight = CreatePortalCam();
     }
@@ -174,6 +191,14 @@ public class Portal : MonoBehaviour
         Vector4 clipPlaneCamSpace = new Vector4(camSpaceNormal.x, camSpaceNormal.y, camSpaceNormal.z, camSpaceDistance);
 
         return cam.CalculateObliqueMatrix(clipPlaneCamSpace);
+    }
+
+    public void MovePortal(RaycastHit hit)
+    {
+        _wallCollider = hit.collider;
+        Vector3 portalPosition = hit.point + hit.normal * meshRenderer.transform.localScale.z;
+        Quaternion portalRotation = Quaternion.LookRotation(isLeftPortal ? hit.normal : -hit.normal);
+        transform.SetPositionAndRotation(portalPosition, portalRotation);
     }
 
     public void TravellerEnterdPortal(PortalTraveller traveller)

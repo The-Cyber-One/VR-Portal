@@ -16,7 +16,7 @@ public class VRRig : MonoBehaviour
     private void Update()
     {
         transform.position = headConstraint.position + _headBodyOffset;
-        transform.forward = Vector3.ProjectOnPlane(headConstraint.up, Vector3.up).normalized;
+        transform.forward = Vector3.ProjectOnPlane(headConstraint.forward, Vector3.up).normalized;
 
         head.Map();
         leftHand.Map();

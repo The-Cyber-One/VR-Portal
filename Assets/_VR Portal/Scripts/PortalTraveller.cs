@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Collider), typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class PortalTraveller : MonoBehaviour
 {
     [HideInInspector] public Vector3 PreviousOffsetFromPortal;
