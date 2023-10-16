@@ -69,7 +69,6 @@ public class Portal : MonoBehaviour
         if (other.TryGetComponent(out PortalTraveller traveller))
         {
             TravellerEnterdPortal(traveller);
-            Physics.IgnoreCollision(other, _wallCollider, true);
         }
     }
 
@@ -77,8 +76,7 @@ public class Portal : MonoBehaviour
     {
         if (other.TryGetComponent(out PortalTraveller traveller))
         {
-            _travellers.Remove(traveller);
-            Physics.IgnoreCollision(other, _wallCollider, false);
+            TravellerExitedPortal(traveller);
         }
     }
 
@@ -207,6 +205,7 @@ public class Portal : MonoBehaviour
             return;
         traveller.PreviousOffsetFromPortal = transform.position - traveller.transform.position;
         _travellers.Add(traveller);
+        Physics.IgnoreCollision(traveller.Collider, _wallCollider, true);
     }
 
     public void TravellerExitedPortal(PortalTraveller traveller)
@@ -214,6 +213,7 @@ public class Portal : MonoBehaviour
         if (!_travellers.Contains(traveller))
             return;
         _travellers.Remove(traveller);
+        Physics.IgnoreCollision(traveller.Collider, _wallCollider, false);
     }
 
     private void ProtectScreenFromClipping()
