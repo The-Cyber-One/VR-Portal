@@ -9,7 +9,6 @@ public class Portal : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] Transform leftEye, rightEye, center;
     [SerializeField] MeshRenderer meshRenderer;
-    [SerializeField] bool isLeftPortal;
 
     InputDevice _hmd;
     Camera _portalCamLeft, _portalCamRight;
@@ -18,6 +17,7 @@ public class Portal : MonoBehaviour
     Collider _wallCollider;
 
     public int Layer => meshRenderer.gameObject.layer;
+    public Transform PortalScreen => meshRenderer.transform;
 
     private void OnEnable()
     {
@@ -191,12 +191,10 @@ public class Portal : MonoBehaviour
         return cam.CalculateObliqueMatrix(clipPlaneCamSpace);
     }
 
-    public void MovePortal(RaycastHit hit)
+    public void MovePortal(Collider wall, Vector3 position, Quaternion rotation)
     {
-        _wallCollider = hit.collider;
-        Vector3 portalPosition = hit.point + hit.normal * meshRenderer.transform.localScale.z;
-        Quaternion portalRotation = Quaternion.LookRotation(isLeftPortal ? hit.normal : -hit.normal);
-        transform.SetPositionAndRotation(portalPosition, portalRotation);
+        _wallCollider = wall;
+        transform.SetPositionAndRotation(position, rotation);
     }
 
     public void TravellerEnterdPortal(PortalTraveller traveller)

@@ -238,64 +238,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe215503df67c545b9e559493886030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHand: {fileID: 8613357337645250922}
-  rightHand: {fileID: 8441887168344209543}
-  inputActionLeft:
-    m_Name: Input Action Left
+  inputAction:
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 9b1ec509-23dc-4efb-af1e-460d8d3bdcce
+    m_Id: 4d07ccd3-bd47-4a9d-ad96-ea9e04eebcf5
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: e2313710-4b5e-4093-87f6-622393e7a3e8
-      m_Path: <XRController>{LeftHand}/{PrimaryButton}
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action Left
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 8326db02-2341-4ac2-a0ed-f4bd18ce0970
-      m_Path: <Keyboard>/q
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action Left
-      m_Flags: 0
+    m_SingletonActionBindings: []
     m_Flags: 0
-  inputActionRight:
-    m_Name: Input Action Right
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b4ef2d8e-be92-4d4c-9582-bfd43f23d19c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 763dd9b4-fe41-4139-8400-a72950d8a6bb
-      m_Path: <XRController>{RightHand}/{PrimaryButton}
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action Right
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 9c6258f6-074c-40c3-8216-7c29ae2c9f4d
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action Right
-      m_Flags: 0
-    m_Flags: 0
-  portalLeft: {fileID: 0}
-  portalRight: {fileID: 0}
+  portal: {fileID: 0}
+  isLeftPortal: 0
   maxDistance: 100
-  nonPortalLayer:
+  wallLayerMask:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 0
 --- !u!1 &2037228635549863074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1043,7 @@ GameObject:
   - component: {fileID: 8441887168344209543}
   - component: {fileID: 7850773611499500383}
   - component: {fileID: 7801200979393651322}
+  - component: {fileID: 1239169155289914413}
   m_Layer: 9
   m_Name: Right Controller
   m_TagString: Untagged
@@ -1346,6 +1304,41 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_SortAtRoot: 0
+--- !u!114 &1239169155289914413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272537076060631481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe215503df67c545b9e559493886030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputAction:
+    m_Name: Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f9a18df1-4a23-473f-b65c-228753768743
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: bb311640-2035-42de-8233-6ea2c4f7b423
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 0
+    m_Flags: 0
+  portal: {fileID: 0}
+  isLeftPortal: 0
+  maxDistance: 100
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &4480184002487142797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,6 +1403,7 @@ GameObject:
   - component: {fileID: 8613357337645250922}
   - component: {fileID: 6800605081732687081}
   - component: {fileID: 6560439897036127601}
+  - component: {fileID: 4035845692890802433}
   m_Layer: 9
   m_Name: Left Controller
   m_TagString: Untagged
@@ -1670,6 +1664,41 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_SortAtRoot: 0
+--- !u!114 &4035845692890802433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4669647256240997882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe215503df67c545b9e559493886030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputAction:
+    m_Name: Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c05359cf-fe58-430e-a3ca-bbf2a21c8148
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: bb311640-2035-42de-8233-6ea2c4f7b423
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 0
+    m_Flags: 0
+  portal: {fileID: 0}
+  isLeftPortal: 0
+  maxDistance: 100
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &4860305652400721121
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,8 +30,8 @@ public class PortalTraveller : MonoBehaviour
 
         if (rb != null)
         {
-Vector3 localVelocity = inPortal.transform.InverseTransformDirection(rb.velocity);
-rb.velocity = outPortal.transform.TransformDirection(localVelocity);
+            Vector3 localVelocity = inPortal.transform.InverseTransformDirection(rb.velocity);
+            rb.velocity = outPortal.transform.TransformDirection(localVelocity);
         }
     }
 }
