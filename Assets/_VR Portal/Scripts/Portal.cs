@@ -9,6 +9,8 @@ public class Portal : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] Transform leftEye, rightEye, center;
     [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] Animator animator;
+    [SerializeField] ParticleSystem growParticles;
 
     InputDevice _hmd;
     Camera _portalCamLeft, _portalCamRight;
@@ -194,6 +196,8 @@ public class Portal : MonoBehaviour
     public void MovePortal(Collider wall, Vector3 position, Quaternion rotation)
     {
         _wallCollider = wall;
+        animator.Play("Grow");
+        growParticles.Play();
         transform.SetPositionAndRotation(position, rotation);
     }
 

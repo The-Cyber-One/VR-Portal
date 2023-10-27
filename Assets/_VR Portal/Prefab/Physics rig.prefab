@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAction:
-    m_Name: 
+    m_Name: Input
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 4d07ccd3-bd47-4a9d-ad96-ea9e04eebcf5
@@ -249,7 +249,7 @@ MonoBehaviour:
     m_Flags: 0
   portal: {fileID: 0}
   isLeftPortal: 0
-  maxDistance: 100
+  portalProjectile: {fileID: 0}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -900,6 +900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1926413004982230550}
   - component: {fileID: 6332332281240901526}
+  - component: {fileID: 2956490996396702860}
   m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
@@ -943,6 +944,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05238785, y: 0.16962124, z: 0.0969376}
   m_Center: {x: 0.005375699, y: 0.094810896, z: 0.0052872673}
+--- !u!114 &2956490996396702860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450572983077310859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04c29f4e4233e94b8f442d94e68a4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
+  Parent: {fileID: 0}
 --- !u!1 &2700685235160396485
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2640252403956855844}
   - component: {fileID: 717076896043890476}
+  - component: {fileID: 7319896023503768508}
   m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
@@ -996,6 +1012,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.12
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7319896023503768508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700685235160396485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04c29f4e4233e94b8f442d94e68a4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
+  Parent: {fileID: 0}
 --- !u!1 &3647624675639094481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,7 +1356,15 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: bb311640-2035-42de-8233-6ea2c4f7b423
-      m_Path: 
+      m_Path: <XRController>{RightHand}/{PrimaryButton}
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 83793aa3-6611-465e-bd9e-7afdecc6e614
+      m_Path: <Keyboard>/h
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1335,7 +1373,7 @@ MonoBehaviour:
     m_Flags: 0
   portal: {fileID: 0}
   isLeftPortal: 0
-  maxDistance: 100
+  portalProjectile: {fileID: 916873884109012179, guid: 462887bc82ff2f149b0dd51e64b5f196, type: 3}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1349,6 +1387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7827075520755903752}
   - component: {fileID: 2864181503548507463}
+  - component: {fileID: 8793510297833490682}
   m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
@@ -1392,6 +1431,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05238785, y: 0.16962124, z: 0.0969376}
   m_Center: {x: 0.005375699, y: 0.094810896, z: 0.0052872673}
+--- !u!114 &8793510297833490682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480184002487142797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04c29f4e4233e94b8f442d94e68a4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
+  Parent: {fileID: 0}
 --- !u!1 &4669647256240997882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,7 +1739,15 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: bb311640-2035-42de-8233-6ea2c4f7b423
-      m_Path: 
+      m_Path: <XRController>{LeftHand}/{PrimaryButton}
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 87a90242-14da-47a9-87e4-cedc0b063442
+      m_Path: <Keyboard>/y
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1694,8 +1755,8 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   portal: {fileID: 0}
-  isLeftPortal: 0
-  maxDistance: 100
+  isLeftPortal: 1
+  portalProjectile: {fileID: 916873884109012179, guid: 462887bc82ff2f149b0dd51e64b5f196, type: 3}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
