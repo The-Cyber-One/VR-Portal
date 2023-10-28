@@ -7,7 +7,10 @@ public class Shooting : MonoBehaviour
     [SerializeField] Portal portal;
     [SerializeField] bool isLeftPortal;
     [SerializeField] PortalProjectile portalProjectile;
-    [SerializeField] LayerMask wallLayerMask;
+    [SerializeField] LayerMask wallLayerMask, nonPortalMask;
+    [SerializeField] float maxWallDistance = 100;
+
+    private PortalProjectile _portalProjectileInstance;
 
     private void OnEnable()
     {
@@ -23,23 +26,24 @@ public class Shooting : MonoBehaviour
 
     private void OnButtonPressed(InputAction.CallbackContext obj)
     {
-        Instantiate(portalProjectile, transform.position, transform.rotation).OnHit += (hit) =>
-        {
-            if (((1 << hit.collider.gameObject.layer) & wallLayerMask) == 0 || !ShootPortal(hit))
-            {
-                // Indicate mis fire
-                Debug.Log($"Can't place portal on {hit.transform.gameObject.name}");
-            }
-        };
+        if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, maxWallDistance, nonPortalMask))
+            return; // Don't start shooting if nothing will be hit.
 
-        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, maxDistance))
-        //{
-        //    if (((1 << hit.collider.gameObject.layer) & wallLayerMask) == 0 || !ShootPortal(hit))
-        //    {
-        //        // Indicate mis fire
-        //        Debug.Log($"Can't place portal on {hit.transform.gameObject.name}");
-        //    }
-        //}
+        if (_portalProjectileInstance != null)
+        {
+            Destroy(_portalProjectileInstance.gameObject);
+        }
+
+        _portalProjectileInstance = Instantiate(portalProjectile, transform.position, transform.rotation);
+        _portalProjectileInstance.StartMove(hit.point);
+        _portalProjectileInstance.OnHit += () =>
+        {
+            if (((1 << hit.collider.gameObject.layer) & wallLayerMask) != 0 && ShootPortal(hit))
+                return;
+
+            // Indicate mis fire
+            Debug.Log($"Can't place portal on {hit.transform.gameObject.name}");
+        };
     }
 
     private bool ShootPortal(RaycastHit hit)

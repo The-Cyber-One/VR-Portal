@@ -3,7 +3,7 @@ using UnityEngine;
 public class PhysicsRig : MonoBehaviour
 {
     [SerializeField] Transform playerHead, leftHand, rightHand;
-    [SerializeField] ConfigurableJoint headJoint, leftHandJoint, rightHandJoint;
+    [SerializeField] ConfigurableJoint /*headJoint,*/ leftHandJoint, rightHandJoint;
     [SerializeField] CapsuleCollider bodyCollider;
 
     private void FixedUpdate()
@@ -16,6 +16,6 @@ public class PhysicsRig : MonoBehaviour
         rightHandJoint.targetPosition = rightHand.localPosition;
         rightHandJoint.targetRotation = rightHand.localRotation;
 
-        headJoint.targetPosition = playerHead.localPosition;
+        //headJoint.targetPosition = playerHead.localPosition;
     }
 }

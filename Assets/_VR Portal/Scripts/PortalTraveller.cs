@@ -5,9 +5,9 @@ public class PortalTraveller : MonoBehaviour
 {
     [HideInInspector] public Vector3 PreviousOffsetFromPortal;
     [SerializeField] protected Transform Parent;
+    [SerializeField] private Rigidbody rb;
     public Collider Collider { get; private set; }
 
-    private Rigidbody rb;
 
     private void Awake()
     {
@@ -15,7 +15,10 @@ public class PortalTraveller : MonoBehaviour
             Parent = transform;
 
         Collider = GetComponent<Collider>();
-        TryGetComponent(out rb);
+        if (rb == null)
+        {
+            TryGetComponent(out rb);
+        }
     }
 
     public virtual void Teleport(Portal inPortal, Portal outPortal)
@@ -31,7 +34,8 @@ public class PortalTraveller : MonoBehaviour
         if (rb != null)
         {
             Vector3 localVelocity = inPortal.transform.InverseTransformDirection(rb.velocity);
-            rb.velocity = outPortal.transform.TransformDirection(localVelocity);
+            rb.velocity = Vector3.zero;
+            rb.AddForce(outPortal.transform.TransformDirection(localVelocity) * 2, ForceMode.VelocityChange);
         }
     }
 }

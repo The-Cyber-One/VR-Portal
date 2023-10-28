@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 7253944404781934878}
   - component: {fileID: 1887798626921204369}
   - component: {fileID: 6532522332090190448}
-  - component: {fileID: 6380999250915271252}
+  - component: {fileID: 290681753087689647}
   m_Layer: 9
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -226,7 +226,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &6380999250915271252
+--- !u!114 &290681753087689647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,24 +235,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 433087297794741278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe215503df67c545b9e559493886030, type: 3}
+  m_Script: {fileID: 11500000, guid: f4aa669b84fee43418a8edb08a7ef3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAction:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 4d07ccd3-bd47-4a9d-ad96-ea9e04eebcf5
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  portal: {fileID: 0}
-  isLeftPortal: 0
-  portalProjectile: {fileID: 0}
-  wallLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  rotationAngle: 5
 --- !u!1 &2037228635549863074
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1018676535333929973
 Transform:
   m_ObjectHideFlags: 0
@@ -468,7 +454,6 @@ MonoBehaviour:
   playerHead: {fileID: 6530491742803868257}
   leftHand: {fileID: 8613357337645250922}
   rightHand: {fileID: 8441887168344209543}
-  headJoint: {fileID: 2185413492794906794}
   leftHandJoint: {fileID: 6930805109430676625}
   rightHandJoint: {fileID: 3898595246583103028}
   bodyCollider: {fileID: 6771023164453265338}
@@ -678,6 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
   Parent: {fileID: 2610593658631263582}
+  rb: {fileID: 0}
   xrOrigin: {fileID: 2688564679089431309}
   otherEye: {fileID: 9198814294706361021}
   cam: {fileID: 5299916157578598315}
@@ -958,6 +944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
   Parent: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &2700685235160396485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
   Parent: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &3647624675639094481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,10 +1361,14 @@ MonoBehaviour:
     m_Flags: 0
   portal: {fileID: 0}
   isLeftPortal: 0
-  portalProjectile: {fileID: 916873884109012179, guid: 462887bc82ff2f149b0dd51e64b5f196, type: 3}
+  portalProjectile: {fileID: 3396981107364198213, guid: 5604ac26476013a46b74a8fd0916a63e, type: 3}
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  nonPortalMask:
+    serializedVersion: 2
+    m_Bits: 1591
+  maxWallDistance: 100
 --- !u!1 &4480184002487142797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,6 +1437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
   Parent: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &4669647256240997882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,6 +1753,10 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  nonPortalMask:
+    serializedVersion: 2
+    m_Bits: 1591
+  maxWallDistance: 100
 --- !u!1 &4860305652400721121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7900719941052244847}
   - component: {fileID: 6771023164453265338}
+  - component: {fileID: 8448712877359290305}
   m_Layer: 9
   m_Name: Body Collider
   m_TagString: Untagged
@@ -2008,6 +2006,21 @@ CapsuleCollider:
   m_Height: 0.7
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8448712877359290305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5168923295090863403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04c29f4e4233e94b8f442d94e68a4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
+  Parent: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &7039765267747306046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,6 +2227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
   Parent: {fileID: 6491672240117223155}
+  rb: {fileID: 0}
   xrOrigin: {fileID: 2688564679089431309}
   otherEye: {fileID: 3135319133658603659}
   cam: {fileID: 5674406612510235533}
@@ -2263,7 +2277,6 @@ GameObject:
   - component: {fileID: 5375586485799182701}
   - component: {fileID: 696428473911278517}
   - component: {fileID: 5995874975382752135}
-  - component: {fileID: 1231161183579117654}
   - component: {fileID: 3329351260142360294}
   - component: {fileID: 7482460558367819711}
   m_Layer: 9
@@ -2475,35 +2488,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.05
+  m_Radius: 0.12
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1231161183579117654
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8149220862462373797}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!114 &3329351260142360294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2517,7 +2503,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
-  Parent: {fileID: 2688564679089431309}
+  Parent: {fileID: 7994104501940311035}
+  rb: {fileID: 6532522332090190448}
 --- !u!114 &7482460558367819711
 MonoBehaviour:
   m_ObjectHideFlags: 0
