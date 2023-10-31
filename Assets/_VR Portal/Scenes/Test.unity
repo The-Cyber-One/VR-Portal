@@ -634,13 +634,17 @@ PrefabInstance:
       propertyPath: portals.Array.data[1]
       value: 
       objectReference: {fileID: 1022263354}
+    - target: {fileID: 7900719941052244847, guid: 70d3aa545e13daf44813ce77f7efc5ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5999999
+      objectReference: {fileID: 0}
     - target: {fileID: 7994104501940311035, guid: 70d3aa545e13daf44813ce77f7efc5ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7994104501940311035, guid: 70d3aa545e13daf44813ce77f7efc5ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 2.534
       objectReference: {fileID: 0}
     - target: {fileID: 7994104501940311035, guid: 70d3aa545e13daf44813ce77f7efc5ae, type: 3}
       propertyPath: m_LocalPosition.z
