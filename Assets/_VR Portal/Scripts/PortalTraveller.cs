@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class PortalTraveller : MonoBehaviour
 {
     [HideInInspector] public Vector3 PreviousOffsetFromPortal;
     [SerializeField] protected Transform Parent;
-    [SerializeField] private Rigidbody rb;
-    public Collider Collider { get; private set; }
+    [SerializeField] protected Rigidbody RB;
+    private Collider _collider;
 
 
     private void Awake()
@@ -14,10 +15,10 @@ public class PortalTraveller : MonoBehaviour
         if (Parent == null)
             Parent = transform;
 
-        Collider = GetComponent<Collider>();
-        if (rb == null)
+        _collider = GetComponent<Collider>();
+        if (RB == null)
         {
-            TryGetComponent(out rb);
+            TryGetComponent(out RB);
         }
     }
 
@@ -31,11 +32,16 @@ public class PortalTraveller : MonoBehaviour
         inPortal.TravellerExitedPortal(this);
         outPortal.TravellerEnterdPortal(this);
 
-        if (rb != null)
+        if (RB != null)
         {
-            Vector3 localVelocity = inPortal.transform.InverseTransformDirection(rb.velocity);
-            rb.velocity = Vector3.zero;
-            rb.AddForce(outPortal.transform.TransformDirection(localVelocity) * 2, ForceMode.VelocityChange);
+            Vector3 localVelocity = inPortal.transform.InverseTransformDirection(RB.velocity);
+            Vector3 newVelocity = outPortal.transform.TransformDirection(localVelocity);
+            RB.velocity = newVelocity;
         }
+    }
+
+    public virtual void SetPortalCollision(bool ignoreCollision, Collider wallCollider)
+    {
+        Physics.IgnoreCollision(_collider, wallCollider, ignoreCollision);
     }
 }

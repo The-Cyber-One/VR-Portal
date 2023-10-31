@@ -142,8 +142,12 @@ public class Portal : MonoBehaviour
         var portalMatrixRight = otherPortal.transform.localToWorldMatrix * transform.worldToLocalMatrix * rightEye.localToWorldMatrix;
         _portalCamRight.transform.SetPositionAndRotation(portalMatrixRight.GetPosition(), portalMatrixRight.rotation);
 
-        //_portalCamLeft.projectionMatrix = ObliqueProjection(_portalCamLeft);
-        //_portalCamRight.projectionMatrix = ObliqueProjection(_portalCamRight);
+        try
+        {
+            _portalCamLeft.projectionMatrix = ObliqueProjection(_portalCamLeft);
+            _portalCamRight.projectionMatrix = ObliqueProjection(_portalCamRight);
+        }
+        catch { }
 
         _portalCamLeft.Render();
         _portalCamRight.Render();
@@ -207,7 +211,7 @@ public class Portal : MonoBehaviour
             return;
         traveller.PreviousOffsetFromPortal = transform.position - traveller.transform.position;
         _travellers.Add(traveller);
-        Physics.IgnoreCollision(traveller.Collider, _wallCollider, true);
+        traveller.SetPortalCollision(true, _wallCollider);
     }
 
     public void TravellerExitedPortal(PortalTraveller traveller)
@@ -215,7 +219,7 @@ public class Portal : MonoBehaviour
         if (!_travellers.Contains(traveller))
             return;
         _travellers.Remove(traveller);
-        Physics.IgnoreCollision(traveller.Collider, _wallCollider, false);
+        traveller.SetPortalCollision(false, _wallCollider);
     }
 
     private void ProtectScreenFromClipping()

@@ -88,6 +88,7 @@ Material:
     - _SquareSize: 0.25
     - _SquareSpeed: 25
     - _SrcBlend: 1
+    - _Test: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

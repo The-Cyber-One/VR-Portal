@@ -72,21 +72,22 @@ public class Shooting : MonoBehaviour
         float portalScreenXOffset = portal.PortalScreen.localScale.x / 2;
         float portalScreenYOffset = portal.PortalScreen.localScale.y / 2;
         float maxOffset = Mathf.Max(portalScreenXOffset, portalScreenYOffset) + 0.05f;
+        int side = isLeftPortal ? -1 : 1;
 
         var testPoints = new[]
         {
-            portalRotation * new Vector3(-portalScreenXOffset, 0, -portal.PortalScreen.localScale.z - 0.01f),
-            portalRotation * new Vector3(portalScreenXOffset, 0, -portal.PortalScreen.localScale.z - 0.01f),
-            portalRotation * new Vector3(0, -portalScreenYOffset, -portal.PortalScreen.localScale.z - 0.01f),
-            portalRotation * new Vector3(0, portalScreenYOffset, -portal.PortalScreen.localScale.z - 0.01f),
+            portalRotation * new Vector3(-portalScreenXOffset, 0, side * (portal.PortalScreen.localScale.z + 0.01f)),
+            portalRotation * new Vector3(portalScreenXOffset, 0, side * (portal.PortalScreen.localScale.z + 0.01f)),
+            portalRotation * new Vector3(0, -portalScreenYOffset, side * (portal.PortalScreen.localScale.z + 0.01f)),
+            portalRotation * new Vector3(0, portalScreenYOffset, side * (portal.PortalScreen.localScale.z + 0.01f)),
         };
 
         var testDirections = new[]
         {
-            Vector3.right,
-            Vector3.left,
-            Vector3.up,
-            Vector3.down,
+            portalRotation * Vector3.right,
+            portalRotation * Vector3.left,
+            portalRotation * Vector3.up,
+            portalRotation * Vector3.down,
         };
 
         for (int i = 0; i < testPoints.Length; i++)

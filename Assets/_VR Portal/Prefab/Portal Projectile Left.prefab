@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4469733603282434809}
   - component: {fileID: 7643618527791927974}
   - component: {fileID: 2908532898307623362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4786,7 +4786,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f50597755dc44ca44aff2ac377ef19d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4851,7 +4851,7 @@ GameObject:
   - component: {fileID: 3046008223082882111}
   - component: {fileID: 9070267024757438779}
   - component: {fileID: 1739564952875644306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Portal Projectile Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4890,7 +4890,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7.5
   rb: {fileID: 1973199076245582300}
-  maxWallDistance: 1
   lifeTime: 10
 --- !u!54 &1973199076245582300
 Rigidbody:
@@ -9684,7 +9683,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f50597755dc44ca44aff2ac377ef19d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9719,13 +9718,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 00030409
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -9746,7 +9745,7 @@ GameObject:
   - component: {fileID: 7889587156413222427}
   - component: {fileID: 7590374839345599742}
   - component: {fileID: 7906034959310632211}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9762,7 +9761,7 @@ Transform:
   m_GameObject: {fileID: 4108198849961492822}
   serializedVersion: 2
   m_LocalRotation: {x: -2.1371538e-10, y: -1, z: -9.313226e-10, w: -0.00000011922477}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14512,8 +14511,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f50597755dc44ca44aff2ac377ef19d9, type: 2}
+  - {fileID: 2100000, guid: f50597755dc44ca44aff2ac377ef19d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14575,7 +14574,7 @@ GameObject:
   - component: {fileID: 5061701050597312697}
   - component: {fileID: 2654205369202048124}
   - component: {fileID: 3460012170418515653}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19341,7 +19340,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f50597755dc44ca44aff2ac377ef19d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

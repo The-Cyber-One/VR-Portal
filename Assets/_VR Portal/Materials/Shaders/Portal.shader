@@ -16,6 +16,9 @@ Shader "Custom/Portal"
         _SquareSize ("Square size", Float) = 0.1
         _SquareBorder ("Square border size", Range(0, 1)) = 0.01
         _SquareSpeed ("Square speed", Float) = 1
+
+        [Header(Testing)]
+        _Test ("Test", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -33,7 +36,6 @@ Shader "Custom/Portal"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
-            // #include "FastNoiseLite.hlsl"
 
             struct appdata
             {
@@ -117,12 +119,6 @@ Shader "Custom/Portal"
                 // Clamp here to get rid of center pixel that has a weired value
                 borderColor = clamp(borderColor * squares, 0, 1);
                 // return squares;
-
-                // Create and configure noise state
-                // fnl_state noise = fnlCreateState();
-                // noise.noise_type = FNL_NOISE_OPENSIMPLEX2;
-                // float2 noiseValue = fnlGetNoise2D(noise, i.screenPos.x * 500, i.screenPos.y * 500) * (1 / length(
-                //     i.screenPos.xy) * 0.07);
 
                 fixed4 outColor = fixed4(lerp(portalScreen, borderColor, borderGradient), 1);
                 return outColor;
