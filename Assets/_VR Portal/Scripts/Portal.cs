@@ -93,8 +93,7 @@ public class Portal : MonoBehaviour
 
     private IEnumerator C_CreatePortalCam()
     {
-        float fov = playerCam.fieldOfView;
-        yield return new WaitUntil(() => fov != playerCam.fieldOfView);
+        yield return new WaitUntil(() => center.localPosition != Vector3.zero);
         _portalCamLeft = CreatePortalCam();
         _portalCamRight = CreatePortalCam();
     }

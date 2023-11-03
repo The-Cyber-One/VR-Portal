@@ -844,6 +844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1926413004982230550}
   - component: {fileID: 6332332281240901526}
+  - component: {fileID: 6605682375375527911}
   m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
@@ -887,6 +888,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05238785, y: 0.16962124, z: 0.0969376}
   m_Center: {x: 0.005375699, y: 0.094810896, z: 0.0052872673}
+--- !u!114 &6605682375375527911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450572983077310859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04c29f4e4233e94b8f442d94e68a4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
+  Parent: {fileID: 0}
+  RB: {fileID: 0}
+  colliders: []
 --- !u!1 &2700685235160396485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7827075520755903752}
   - component: {fileID: 2864181503548507463}
+  - component: {fileID: 3022708680464422188}
   m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
@@ -1365,6 +1383,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05238785, y: 0.16962124, z: 0.0969376}
   m_Center: {x: 0.005375699, y: 0.094810896, z: 0.0052872673}
+--- !u!114 &3022708680464422188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480184002487142797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04c29f4e4233e94b8f442d94e68a4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreviousOffsetFromPortal: {x: 0, y: 0, z: 0}
+  Parent: {fileID: 0}
+  RB: {fileID: 0}
+  colliders: []
 --- !u!1 &4669647256240997882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,12 +1996,12 @@ ParentConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 1.6, z: 0}
-  m_RotationAtRest: {x: 0.99999136, y: 0, z: 0}
+  m_TranslationAtRest: {x: 0, y: 1.5799999, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: -0.0011525154, y: -0.006403327, z: -0.006522838}
+  - {x: -0.0011523962, y: 0.4487008, z: 0.007992983}
   m_RotationOffsets:
-  - {x: 0, y: 0, z: 0}
+  - {x: 5.0000043, y: 0, z: 0}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
@@ -1977,7 +2011,7 @@ ParentConstraint:
   m_Active: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 4652759022747748490}
+  - sourceTransform: {fileID: 2834310743865102758}
     weight: 1
 --- !u!1 &7039765267747306046
 GameObject:
@@ -3100,13 +3134,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9bd647a3d8d4d8449931a1e127041a8, type: 3}
+--- !u!4 &2834310743865102758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5369289717657186178, guid: f9bd647a3d8d4d8449931a1e127041a8, type: 3}
+  m_PrefabInstance: {fileID: 7914779572027670052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4166265359963808908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6054947120154303144, guid: f9bd647a3d8d4d8449931a1e127041a8, type: 3}
-  m_PrefabInstance: {fileID: 7914779572027670052}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4652759022747748490 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3262604733829199534, guid: f9bd647a3d8d4d8449931a1e127041a8, type: 3}
   m_PrefabInstance: {fileID: 7914779572027670052}
   m_PrefabAsset: {fileID: 0}

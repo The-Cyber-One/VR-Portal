@@ -96,7 +96,7 @@ public class Shooting : MonoBehaviour
             if (Physics.CheckSphere(portalPosition + testPoints[i], 0.05f, wallLayerMask))
                 continue; // Not break as was shown in the video
 
-            if (Physics.Raycast(portalPosition + testPoints[i], testDirections[i], out RaycastHit hit, maxOffset))
+            if (Physics.Raycast(portalPosition + testPoints[i], testDirections[i], out RaycastHit hit, maxOffset, wallLayerMask))
             {
                 Vector3 offset = hit.point - (portalPosition + testPoints[i]);
                 Debug.DrawRay(portalPosition + testPoints[i], offset, Color.cyan, 5);
