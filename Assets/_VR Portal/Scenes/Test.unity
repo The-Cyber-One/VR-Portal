@@ -1162,6 +1162,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2688564679089431309, guid: 70d3aa545e13daf44813ce77f7efc5ae, type: 3}
   m_PrefabInstance: {fileID: 1018550847}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1018550849 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6532522332090190448, guid: 70d3aa545e13daf44813ce77f7efc5ae, type: 3}
+  m_PrefabInstance: {fileID: 1018550847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1022263354 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2793776367470552747, guid: 9893a211edab8a0489d1a5988830f4c0, type: 3}
@@ -1697,6 +1702,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1591
   maxWallDistance: 100
+  rb: {fileID: 1018550849}
 --- !u!4 &1822460752
 Transform:
   m_ObjectHideFlags: 0

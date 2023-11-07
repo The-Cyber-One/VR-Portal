@@ -76,25 +76,25 @@ public class Shooting : MonoBehaviour
 
         var testPoints = new[]
         {
-            portalRotation * new Vector3(-portalScreenXOffset, 0, side * (portal.PortalScreen.localScale.z + 0.01f)),
-            portalRotation * new Vector3(portalScreenXOffset, 0, side * (portal.PortalScreen.localScale.z + 0.01f)),
-            portalRotation * new Vector3(0, -portalScreenYOffset, side * (portal.PortalScreen.localScale.z + 0.01f)),
-            portalRotation * new Vector3(0, portalScreenYOffset, side * (portal.PortalScreen.localScale.z + 0.01f)),
+            portalRotation * new Vector3(-portalScreenXOffset, -portalScreenYOffset, side * (portal.PortalScreen.localScale.z + 0.01f)),
+            portalRotation * new Vector3(-portalScreenXOffset, portalScreenYOffset, side * (portal.PortalScreen.localScale.z + 0.01f)),
+            portalRotation * new Vector3(portalScreenXOffset, portalScreenYOffset, side * (portal.PortalScreen.localScale.z + 0.01f)),
+            portalRotation * new Vector3(portalScreenXOffset, -portalScreenYOffset, side * (portal.PortalScreen.localScale.z + 0.01f)),
         };
 
         var testDirections = new[]
         {
-            portalRotation * Vector3.right,
-            portalRotation * Vector3.left,
-            portalRotation * Vector3.up,
-            portalRotation * Vector3.down,
+            portalRotation * new Vector3(1, 1, 0),
+            portalRotation * new Vector3(1, -1, 0),
+            portalRotation * new Vector3(-1, -1, 0),
+            portalRotation * new Vector3(-1, 1, 0),
         };
 
         for (int i = 0; i < testPoints.Length; i++)
         {
             Debug.DrawLine(portalPosition + testPoints[i], transform.position, Color.white, 5);
             if (Physics.CheckSphere(portalPosition + testPoints[i], 0.05f, wallLayerMask))
-                continue; // Not break as was shown in the video
+                continue; // Don't break out of the for loop
 
             if (Physics.Raycast(portalPosition + testPoints[i], testDirections[i], out RaycastHit hit, maxOffset, wallLayerMask))
             {
@@ -118,7 +118,7 @@ public class Shooting : MonoBehaviour
             portalRotation * Vector3.down,
         };
 
-        var testDistances = new[]
+        var testDistance = new[]
         {
             portalScreenXOffset,
             portalScreenXOffset,
@@ -128,10 +128,11 @@ public class Shooting : MonoBehaviour
 
         for (int i = 0; i < testDirections.Length; i++)
         {
-            if (Physics.Raycast(portalPosition, testDirections[i], out RaycastHit hit, testDistances[i]))
+            if (Physics.Raycast(portalPosition, testDirections[i], out RaycastHit hit, testDistance[i]))
             {
                 Vector3 offset = portalPosition - hit.point;
-                Vector3 displacement = -testDirections[i] * (testDistances[i] - offset.magnitude);
+                Vector3 displacement = -testDirections[i] * (testDistance[i] - offset.magnitude);
+                Debug.DrawRay(portalPosition, displacement, Color.cyan, 5);
                 portalPosition += displacement;
             }
         }
