@@ -5,12 +5,15 @@ using UnityEngine.XR;
 
 public class Portal : MonoBehaviour
 {
+    public bool IsLeftPortal;
+
     [SerializeField] Portal otherPortal;
     [SerializeField] Camera playerCam;
     [SerializeField] Transform leftEye, rightEye, center;
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] Animator animator;
     [SerializeField] ParticleSystem growParticles;
+    [SerializeField] BoxCollider boxCollider;
 
     InputDevice _hmd;
     Camera _portalCamLeft, _portalCamRight;
@@ -31,7 +34,7 @@ public class Portal : MonoBehaviour
         InputDevices.deviceConnected -= DeviceConnected;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         Collider[] wall = new Collider[1];
         Physics.OverlapSphereNonAlloc(transform.position, 0.1f, wall, ~LayerMask.GetMask(LayerMask.LayerToName(gameObject.layer)));
@@ -41,6 +44,12 @@ public class Portal : MonoBehaviour
         {
             Debug.LogWarning("Portal didn't find starter wall");
         }
+
+        // Wait for a short time so that the headset is active
+        yield return new WaitForSeconds(1.5f);
+        _hmd = InputDevices.GetDeviceAtXRNode(XRNode.Head);
+        _portalCamLeft = CreatePortalCam();
+        _portalCamRight = CreatePortalCam();
     }
 
     private void FixedUpdate()
@@ -87,15 +96,7 @@ public class Portal : MonoBehaviour
         if (obj.characteristics.HasFlag(InputDeviceCharacteristics.HeadMounted))
         {
             _hmd = obj;
-            StartCoroutine(C_CreatePortalCam());
         }
-    }
-
-    private IEnumerator C_CreatePortalCam()
-    {
-        yield return new WaitUntil(() => center.localPosition != Vector3.zero);
-        _portalCamLeft = CreatePortalCam();
-        _portalCamRight = CreatePortalCam();
     }
 
     private Camera CreatePortalCam()
@@ -230,6 +231,8 @@ public class Portal : MonoBehaviour
         Transform portalMesh = meshRenderer.transform;
         bool camFacingSameDirAsPortal = Vector3.Dot(transform.forward, transform.position - closestEye.position) > 0;
         portalMesh.localPosition = (camFacingSameDirAsPortal ? 0.6f : -0.6f) * portalMesh.localScale.z * Vector3.forward;
+        float z = boxCollider.size.z / 2 - 0.1f;
+        boxCollider.center = new Vector3(0, 0, (camFacingSameDirAsPortal ? -z : z));
     }
 
     private static bool VisibleFromCamera(Renderer renderer, Camera camera)

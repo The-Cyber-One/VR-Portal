@@ -1,6 +1,4 @@
-﻿using System;
-using Unity.XR.CoreUtils;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class PortalTraveller : MonoBehaviour

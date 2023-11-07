@@ -82,7 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7729763760943984988, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
       propertyPath: m_Name
-      value: Portal Rigth Variant
+      value: Portal Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159092625244350105, guid: 0cdaca9df6283bf499538d2f196533f9, type: 3}
+      propertyPath: IsLeftPortal
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

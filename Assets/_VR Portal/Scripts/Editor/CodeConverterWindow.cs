@@ -140,9 +140,9 @@ public class CodeConverterWindow : EditorWindow
         string numberRegex = @"\b(\d+)\b";
         string keywordRegex = @"\b(abstract|as|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|do|double|else|enum|event|explicit|extern|false|finally|fixed|float|implicit|in|int|interface|internal|is|lock|long|namespace|new|null|object|operator|out|override|params|private|protected|public|readonly|ref|sbyte|sealed|short|sizeof|stackalloc|static|string|struct|this|throw|true|try|typeof|uint|ulong|unchecked|unsafe|ushort|using|virtual|void|volatile|var)\b";
         string specialKeywordRegex = @"\b(if|for|while|switch|foreach|return|yield)\b";
-        string classRegex = $@"\b({string.Join("|", classes)})\b";
-        string parameterRegex = $@"\b({string.Join("|", parameters)})\b";
-        string structRegex = $@"\b({string.Join("|", structs)})\b";
+        string classRegex = classes.Length > 0 ? $@"\b({string.Join("|", classes)})\b" : string.Empty;
+        string parameterRegex = parameters.Length > 0 ? $@"\b({string.Join("|", parameters)})\b" : string.Empty;
+        string structRegex = structs.Length > 0 ? $@"\b({string.Join("|", structs)})\b" : string.Empty;
         string functionRegex = @"\b(\w+)(?=\()";
 
         List<string> regexList = new List<string>()

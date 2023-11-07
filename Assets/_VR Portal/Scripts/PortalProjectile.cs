@@ -16,9 +16,9 @@ public class PortalProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void StartMove(Vector3 endPoint)
+    public void StartMove(Vector3 endPoint, float bodyVelocity)
     {
-        rb.velocity = transform.forward * speed;
+        rb.velocity = transform.forward * (speed + bodyVelocity);
         StartCoroutine(Move(endPoint));
     }
 

@@ -124,7 +124,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433087297794741278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bf296fc962d7184ab14ad1841598d5f, type: 3}
   m_Name: 
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433087297794741278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 919e39492806b334982b6b84c90dd927, type: 3}
   m_Name: 
@@ -1320,7 +1320,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   portal: {fileID: 0}
-  isLeftPortal: 0
   portalProjectile: {fileID: 3396981107364198213, guid: 5604ac26476013a46b74a8fd0916a63e, type: 3}
   wallLayerMask:
     serializedVersion: 2
@@ -1709,7 +1708,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   portal: {fileID: 0}
-  isLeftPortal: 1
   portalProjectile: {fileID: 916873884109012179, guid: 462887bc82ff2f149b0dd51e64b5f196, type: 3}
   wallLayerMask:
     serializedVersion: 2
@@ -1938,8 +1936,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5168923295090863403}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.008726464, y: -0, z: -0, w: 0.9999619}
-  m_LocalPosition: {x: -3.247402e-15, y: 1.6, z: 0.0000000027939677}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.7319478e-13, y: 1.5799999, z: 0.00000014901161}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

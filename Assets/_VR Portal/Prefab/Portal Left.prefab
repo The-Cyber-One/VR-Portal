@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f858cccc42fbb8b4eb6d231f8dbb526e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsLeftPortal: 1
   otherPortal: {fileID: 0}
   playerCam: {fileID: 0}
   leftEye: {fileID: 0}
@@ -234,6 +235,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 6416253584459641999}
   animator: {fileID: 5949289247759672608}
   growParticles: {fileID: 7235572726099821810}
+  boxCollider: {fileID: 2025366047932226281}
 --- !u!65 &2025366047932226281
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -253,7 +255,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 0.6}
+  m_Size: {x: 1.1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &5949289247759672608
 Animator:

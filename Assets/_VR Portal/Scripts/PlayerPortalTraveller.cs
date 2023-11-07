@@ -10,6 +10,7 @@ public class PlayerPortalTraveller : PortalTraveller
         Vector3 up = xrOrigin.up;
 
         base.Teleport(inPortal, outPortal);
+        RB.velocity = RB.velocity.magnitude * (outPortal.IsLeftPortal ? outPortal.transform.forward : -outPortal.transform.forward);
 
         Vector3 forward = Vector3.ProjectOnPlane(xrOrigin.forward, up);
         if (forward == Vector3.zero)

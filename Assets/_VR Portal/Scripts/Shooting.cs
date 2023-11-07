@@ -5,10 +5,10 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField] InputAction inputAction;
     [SerializeField] Portal portal;
-    [SerializeField] bool isLeftPortal;
     [SerializeField] PortalProjectile portalProjectile;
     [SerializeField] LayerMask wallLayerMask, nonPortalMask;
     [SerializeField] float maxWallDistance = 100;
+    [SerializeField] Rigidbody rb;
 
     private PortalProjectile _portalProjectileInstance;
 
@@ -35,7 +35,7 @@ public class Shooting : MonoBehaviour
         }
 
         _portalProjectileInstance = Instantiate(portalProjectile, transform.position, transform.rotation);
-        _portalProjectileInstance.StartMove(hit.point);
+        _portalProjectileInstance.StartMove(hit.point, rb.velocity.magnitude);
         _portalProjectileInstance.OnHit += () =>
         {
             if (((1 << hit.collider.gameObject.layer) & wallLayerMask) != 0 && ShootPortal(hit))
@@ -49,7 +49,7 @@ public class Shooting : MonoBehaviour
     private bool ShootPortal(RaycastHit hit)
     {
         Vector3 portalPosition = hit.point + hit.normal * portal.PortalScreen.localScale.z;
-        Vector3 portalNormal = isLeftPortal ? hit.normal : -hit.normal;
+        Vector3 portalNormal = portal.IsLeftPortal ? hit.normal : -hit.normal;
         // Use the rotation of the controller for up if portal is on ceiling or floor
         Vector3 upDirection = Mathf.Abs(Vector3.Dot(portalNormal, Vector3.up)) > 0.9f ? transform.up : Vector3.up;
         Quaternion portalRotation = Quaternion.LookRotation(portalNormal, upDirection);
@@ -72,7 +72,7 @@ public class Shooting : MonoBehaviour
         float portalScreenXOffset = portal.PortalScreen.localScale.x / 2;
         float portalScreenYOffset = portal.PortalScreen.localScale.y / 2;
         float maxOffset = Mathf.Max(portalScreenXOffset, portalScreenYOffset) + 0.05f;
-        int side = isLeftPortal ? -1 : 1;
+        int side = portal.IsLeftPortal ? -1 : 1;
 
         var testPoints = new[]
         {

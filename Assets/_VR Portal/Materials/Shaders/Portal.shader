@@ -3,8 +3,8 @@ Shader "Custom/Portal"
     Properties
     {
         [HDR] _Color ("Color", Color) = (1, 1, 1, 1)
-        [HideInInspector] _LeftTex ("Left eye", 2D) = "black" {}
-        [HideInInspector] _RightTex ("Right eye", 2D) = "black" {}
+        _LeftTex ("Left eye", 2D) = "black" {}
+        _RightTex ("Right eye", 2D) = "black" {}
 
         [Header(Border)]
         [Space]
